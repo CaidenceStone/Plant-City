@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody CharacterBody;
     public InputActionAsset MyInputActionMap;
 
-    [Range(0, 2f)]
+    [Range(0, .6f)]
     public float TimeBetweenJumps;
 
     private float? curTimeBeforeNextJump { get; set; } = null;
@@ -20,8 +20,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [Range(0, 25f)]
+    [Range(0, 2500f)]
     public float JumpForce;
+
+    [Range(0, 1000f)]
+    public float MovementForce;
+
+    private Vector3 LocalVelocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -46,14 +51,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //if (Input.GetAxis("Horizontal"))
-        //{
-        //    //
-        //}
-        //if (Input.GetAxis("Vertical"))
-        //{
-        //    //
-        //}
+        Vector3 movementInputForce = new Vector3(this.MyInputActionMap.FindActionMap("Platforming").FindAction("Horizontal").ReadValue<float>(),
+            0,
+            this.MyInputActionMap.FindActionMap("Platforming").FindAction("Vertical").ReadValue<float>())
+            * this.MovementForce;
+
+        this.CharacterBody.AddForce(movementInputForce, ForceMode.Force);
+        
+
         if (this.CanJump && this.MyInputActionMap.FindActionMap("Platforming").FindAction("Jump").WasPressedThisFrame())
         {
             this.CharacterBody.AddForce(Vector3.up * this.JumpForce, ForceMode.Impulse);

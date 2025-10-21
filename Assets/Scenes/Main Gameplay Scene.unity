@@ -243,7 +243,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852672668}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1b6d8016df1bbb54fab0d9383504d895, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -327,7 +327,6 @@ GameObject:
   - component: {fileID: 953745017}
   - component: {fileID: 953745016}
   - component: {fileID: 953745015}
-  - component: {fileID: 953745014}
   - component: {fileID: 953745019}
   - component: {fileID: 953745020}
   m_Layer: 0
@@ -337,24 +336,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!143 &953745014
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953745013}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.5
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &953745015
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -362,7 +343,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953745013}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 022aeaa3f7a88c54284bf625d43f4671, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -448,7 +429,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &953745020
 MonoBehaviour:
@@ -466,6 +447,7 @@ MonoBehaviour:
   MyInputActionMap: {fileID: -944628639613478452, guid: 2070f746615bed047922514c2ada224e, type: 3}
   TimeBetweenJumps: 0.13
   JumpForce: 13
+  MovementForce: 22
 --- !u!1 &1425509164
 GameObject:
   m_ObjectHideFlags: 0
