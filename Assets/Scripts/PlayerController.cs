@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [Range(0, .6f)]
     public float TimeBetweenJumps;
 
+    public float DistanceForMovementForcesFromCenter = .5f;
+    public float DistanceAboveCenterMovementForcesFromCenter = .5f;
+
     private float? curTimeBeforeNextJump { get; set; } = null;
     public bool CanJump
     {
@@ -51,18 +54,31 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Vector3 movementInputForce = new Vector3(this.MyInputActionMap.FindActionMap("Platforming").FindAction("Horizontal").ReadValue<float>(),
-            0,
-            this.MyInputActionMap.FindActionMap("Platforming").FindAction("Vertical").ReadValue<float>())
-            * this.MovementForce;
-
-        this.CharacterBody.AddForce(movementInputForce, ForceMode.Force);
-        
+        this.HandleMovementInput();        
 
         if (this.CanJump && this.MyInputActionMap.FindActionMap("Platforming").FindAction("Jump").WasPressedThisFrame())
         {
             this.CharacterBody.AddForce(Vector3.up * this.JumpForce, ForceMode.Impulse);
             this.curTimeBeforeNextJump = this.TimeBetweenJumps;
         }
+    }
+
+    void HandleMovementInput()
+    {
+
+        if (!this.MyInputActionMap.FindActionMap("Platforming").FindAction("Horizontal").IsInProgress()
+            && !this.MyInputActionMap.FindActionMap("Platforming").FindAction("Vertical").IsInProgress())
+        {
+            return;
+        }
+
+        Vector3 movementInputForce = new Vector3(this.MyInputActionMap.FindActionMap("Platforming").FindAction("Horizontal").ReadValue<float>(),
+            0,
+            this.MyInputActionMap.FindActionMap("Platforming").FindAction("Vertical").ReadValue<float>())
+            * this.MovementForce;
+
+        Vector3 movementInputForcePosition = movementInputForce.normalized * this.DistanceForMovementForcesFromCenter + Vector3.up * DistanceAboveCenterMovementForcesFromCenter;
+
+        this.CharacterBody.AddForceAtPosition(movementInputForce, this.CharacterBody.transform.position + movementInputForcePosition, ForceMode.Force);
     }
 }
