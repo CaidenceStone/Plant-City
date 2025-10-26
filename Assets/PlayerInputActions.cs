@@ -53,6 +53,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Plant Seed"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6302e3f-2a69-47f3-b2f5-aca783f58e8f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""68bdd582-ac21-4ece-b979-560d51865c8f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -73,7 +91,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Horizontal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -84,7 +102,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Horizontal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -106,7 +124,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Vertical"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -117,7 +135,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Vertical"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -128,8 +146,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f8e54db-c565-422c-b041-38d4cb7904d0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MyControlScheme"",
+                    ""action"": ""Plant Seed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""077bb416-01cc-4d33-bea9-d00a39643157"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MyControlScheme"",
+                    ""action"": ""Mouse Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -149,6 +189,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Platforming_Horizontal = m_Platforming.FindAction("Horizontal", throwIfNotFound: true);
         m_Platforming_Vertical = m_Platforming.FindAction("Vertical", throwIfNotFound: true);
         m_Platforming_Jump = m_Platforming.FindAction("Jump", throwIfNotFound: true);
+        m_Platforming_PlantSeed = m_Platforming.FindAction("Plant Seed", throwIfNotFound: true);
+        m_Platforming_MousePosition = m_Platforming.FindAction("Mouse Position", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -213,6 +255,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Platforming_Horizontal;
     private readonly InputAction m_Platforming_Vertical;
     private readonly InputAction m_Platforming_Jump;
+    private readonly InputAction m_Platforming_PlantSeed;
+    private readonly InputAction m_Platforming_MousePosition;
     public struct PlatformingActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -220,6 +264,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Horizontal => m_Wrapper.m_Platforming_Horizontal;
         public InputAction @Vertical => m_Wrapper.m_Platforming_Vertical;
         public InputAction @Jump => m_Wrapper.m_Platforming_Jump;
+        public InputAction @PlantSeed => m_Wrapper.m_Platforming_PlantSeed;
+        public InputAction @MousePosition => m_Wrapper.m_Platforming_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -238,6 +284,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @PlantSeed.started += instance.OnPlantSeed;
+            @PlantSeed.performed += instance.OnPlantSeed;
+            @PlantSeed.canceled += instance.OnPlantSeed;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
         }
 
         private void UnregisterCallbacks(IPlatformingActions instance)
@@ -251,6 +303,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @PlantSeed.started -= instance.OnPlantSeed;
+            @PlantSeed.performed -= instance.OnPlantSeed;
+            @PlantSeed.canceled -= instance.OnPlantSeed;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
         }
 
         public void RemoveCallbacks(IPlatformingActions instance)
@@ -282,5 +340,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnHorizontal(InputAction.CallbackContext context);
         void OnVertical(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnPlantSeed(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

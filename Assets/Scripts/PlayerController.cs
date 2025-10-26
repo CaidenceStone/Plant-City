@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody CharacterBody;
     public InputActionAsset MyInputActionMap;
+    public GameObject SeedPF;
 
     [Range(0, .6f)]
     public float TimeBetweenJumps;
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     [Range(0, 1000f)]
     public float MovementForce;
+
+    public LayerMask GroundMask;
 
     private Vector3 LocalVelocity = Vector3.zero;
 
@@ -61,6 +64,11 @@ public class PlayerController : MonoBehaviour
             this.CharacterBody.AddForce(Vector3.up * this.JumpForce, ForceMode.Impulse);
             this.curTimeBeforeNextJump = this.TimeBetweenJumps;
         }
+
+        if (this.MyInputActionMap.FindActionMap("Platforming").FindAction("Plant Seed").WasPressedThisFrame())
+        {
+            this.PlantSeed();
+        }
     }
 
     void HandleMovementInput()
@@ -80,5 +88,18 @@ public class PlayerController : MonoBehaviour
         Vector3 movementInputForcePosition = movementInputForce.normalized * this.DistanceForMovementForcesFromCenter + Vector3.up * DistanceAboveCenterMovementForcesFromCenter;
 
         this.CharacterBody.AddForceAtPosition(movementInputForce, this.CharacterBody.transform.position + movementInputForcePosition, ForceMode.Force);
+    }
+
+    void PlantSeed()
+    {
+        RaycastHit hit;
+        if (!Physics.Raycast(Camera.main.ScreenPointToRay(this.MyInputActionMap.FindActionMap("Platforming").FindAction("Mouse Position").ReadValue<Vector2>()), out hit, float.MaxValue, GroundMask))
+        {
+            Debug.Log("Can't plant seed, I don't see anything");
+            return;
+        }
+
+        Debug.Log($"Planting seed at {hit.point} with normal {hit.normal}!");
+        Instantiate(SeedPF, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
     }
 }

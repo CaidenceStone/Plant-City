@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Plant Seed",
+                    "type": "Button",
+                    "id": "f6302e3f-2a69-47f3-b2f5-aca783f58e8f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Mouse Position",
+                    "type": "Value",
+                    "id": "68bdd582-ac21-4ece-b979-560d51865c8f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -51,7 +69,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "MyControlScheme",
                     "action": "Horizontal",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -62,7 +80,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "MyControlScheme",
                     "action": "Horizontal",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -84,7 +102,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "MyControlScheme",
                     "action": "Vertical",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -95,7 +113,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "MyControlScheme",
                     "action": "Vertical",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -106,8 +124,30 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "MyControlScheme",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f8e54db-c565-422c-b041-38d4cb7904d0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MyControlScheme",
+                    "action": "Plant Seed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "077bb416-01cc-4d33-bea9-d00a39643157",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MyControlScheme",
+                    "action": "Mouse Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

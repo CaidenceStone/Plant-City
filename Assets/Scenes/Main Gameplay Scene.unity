@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 588446012}
   - component: {fileID: 588446011}
   - component: {fileID: 588446010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 852672671}
   - component: {fileID: 852672670}
   - component: {fileID: 852672669}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,11 +544,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterBody: {fileID: 953745019}
   MyInputActionMap: {fileID: -944628639613478452, guid: 2070f746615bed047922514c2ada224e, type: 3}
+  SeedPF: {fileID: 1902084443109547590, guid: b6550a6b707a01747abd1ac2513700bb, type: 3}
   TimeBetweenJumps: 0.13
   DistanceForMovementForcesFromCenter: 0.5
   DistanceAboveCenterMovementForcesFromCenter: 0.5
   JumpForce: 13
   MovementForce: 22
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1203875586
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +565,7 @@ GameObject:
   - component: {fileID: 1203875589}
   - component: {fileID: 1203875588}
   - component: {fileID: 1203875587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +813,7 @@ GameObject:
   - component: {fileID: 1486044457}
   - component: {fileID: 1486044456}
   - component: {fileID: 1486044455}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
