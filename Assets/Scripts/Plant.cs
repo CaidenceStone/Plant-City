@@ -4,7 +4,7 @@ using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Seed : MonoBehaviour
+public class Plant : MonoBehaviour
 {
     public Transform GrowingTree;
 
@@ -12,8 +12,6 @@ public class Seed : MonoBehaviour
 
     public float GrowYSpeed;
     public float GrowXZSpeed;
-    public float MaxSizeMin;
-    public float MaxSizeMax;
 
     private float maxSizeRoll;
     private bool isGrowing = true;
@@ -22,6 +20,10 @@ public class Seed : MonoBehaviour
     public float OddsOfGrowingBranch = .4f;
 
     public AnimationCurve OddsOfGrowingPerLifecycle;
+
+    public List<SizeConfiguration> Sizes = new List<SizeConfiguration>();
+    private SizeConfiguration chosenSizeTier = null;
+
     float LifecycleStage
     {
         get
@@ -31,13 +33,71 @@ public class Seed : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        this.maxSizeRoll = Random.Range(this.MaxSizeMin, this.MaxSizeMax);
+        if (this.Sizes?.Count == 0)
+        {
+            // There are no size tiers configured; use the most simple fallback
+            this.chosenSizeTier = new();
+        }
+        else
+        {
+            this.chosenSizeTier = this.Sizes[Random.Range(0, this.Sizes.Count)];
+        }
+
+        this.maxSizeRoll = this.chosenSizeTier.RandomScale();
+    }
+
+    /// <summary>
+    /// Returns the smallest scale of all <seealso cref="Sizes"/>.
+    /// If there are no elements, returns 1.
+    /// </summary>
+    public float SmallestScale
+    {
+        get
+        {
+            if (this.Sizes?.Count <= 0)
+            {
+                return 1f;
+            }
+
+            float smallestSize = float.MaxValue;
+
+            foreach (SizeConfiguration size in this.Sizes)
+            {
+                smallestSize = Mathf.Min(size.SizeScaleMin, smallestSize);
+            }
+
+            return smallestSize;
+        }
+    }
+
+    /// <summary>
+    /// Returns the largest scale of all <seealso cref="Sizes"/>.
+    /// If there are no elements, returns 1.
+    /// </summary>
+    public float LargestScale
+    {
+        get
+        {
+            if (this.Sizes?.Count <= 0)
+            {
+                return 1f;
+            }
+
+            float largestSize = float.MinValue;
+
+            foreach (SizeConfiguration size in this.Sizes)
+            {
+                largestSize = Mathf.Max(size.SizeScaleMin, largestSize);
+            }
+
+            return largestSize;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         
     }

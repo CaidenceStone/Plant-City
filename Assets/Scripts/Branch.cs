@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Branch : MonoBehaviour
 {
-    public Seed FromSeed;
+    public Plant FromSeed;
 
     public Transform GrowingBranch;
     public float GrowXYSpeed;

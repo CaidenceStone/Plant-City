@@ -544,7 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterBody: {fileID: 953745019}
   MyInputActionMap: {fileID: -944628639613478452, guid: 2070f746615bed047922514c2ada224e, type: 3}
-  SeedPF: {fileID: 1902084443109547590, guid: b6550a6b707a01747abd1ac2513700bb, type: 3}
+  SeedPF: {fileID: 2092675243373338912, guid: c1639ff6f2813ce4cb6c6be11d91d77b, type: 3}
   TimeBetweenJumps: 0.13
   DistanceForMovementForcesFromCenter: 0.5
   DistanceAboveCenterMovementForcesFromCenter: 0.5
