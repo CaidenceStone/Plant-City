@@ -6,10 +6,6 @@ public class SpringwillowCone : MonoBehaviour
 {
     public Transform NextSpringwillowConeParent;
     public GameObject Model;
-    /// <summary>
-    /// The height of a cone before it starts growing.
-    /// </summary>
-    public float InitialConeHeight = 2f;
 
     public float SpeedGrowthMultiplier = 1f;
 
@@ -18,17 +14,39 @@ public class SpringwillowCone : MonoBehaviour
     public float TargetMaxSize { get; set; } = 5f;
     public bool IsGrowing { get; set; } = true;
 
+    public AnimationCurve XZOverTime;
+    public AnimationCurve YOverTime;
+
+    /// <summary>
+    /// The percentage position point (index / number of target cones to grow) this is
+    /// </summary>
+    public float ConeGrownPercentage { get; set; }
+    public AnimationCurve OffsetPercentageCurve;
+
     public void TryGrow(float time)
     {
+        if (!this.IsGrowing)
+        {
+            return;
+        }
+
         float targetScale = Mathf.Min(this.TargetMaxSize, this.CurrentScale + (time * this.SpeedGrowthMultiplier));
         SetSizeScale(targetScale);
+
+        if (targetScale >= this.TargetMaxSize)
+        {
+            this.IsGrowing = false;
+        }
     }
 
     public void SetSizeScale(float scale)
     {
         this.CurrentScale = scale;
-        this.Model.transform.localScale = this.Model.transform.localScale.normalized * this.CurrentScale;
-        this.NextSpringwillowConeParent.localPosition = Vector3.up * ((scale / 2f) - this.InitialConeHeight);
+        this.Model.transform.localScale = new Vector3(XZOverTime.Evaluate(scale / this.TargetMaxSize),
+            YOverTime.Evaluate(scale / this.TargetMaxSize),
+            XZOverTime.Evaluate(scale / this.TargetMaxSize))
+            * scale;
+        this.NextSpringwillowConeParent.localPosition = (Vector3.up + Vector3.up * this.OffsetPercentageCurve.Evaluate(this.ConeGrownPercentage)) * scale;
     }
 
     public void SetNextRotation(float amount)

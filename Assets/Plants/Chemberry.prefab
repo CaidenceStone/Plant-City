@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GrowingTree: {fileID: 6819883031523337901}
-  GrowthSpeedModifier: 1
+  GrowthSpeedModifier: 5
   GrowYSpeed: 1
   GrowXZSpeed: 1
   BranchPF: {fileID: 0}

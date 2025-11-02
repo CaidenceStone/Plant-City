@@ -81,6 +81,9 @@ public class Springwillow : Plant
             newCone.TargetMaxSize = maxSizeRoll;
             newCone.SpeedGrowthMultiplier = BaseSpeedGrowthMultiplier;
         }
+        // The first item will have a percentage of 0, the last item will have a percentage of (total - 1) / total.
+        newCone.ConeGrownPercentage = (float)this.cones.Count / (float)this.ConesToGrow;
+
         newCone.SetNextRotation(this.ConeRotationAmount);
         newCone.gameObject.SetActive(true);
         cones.Add(newCone);

@@ -544,7 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterBody: {fileID: 953745019}
   MyInputActionMap: {fileID: -944628639613478452, guid: 2070f746615bed047922514c2ada224e, type: 3}
-  SeedPF: {fileID: 8085539266509152182, guid: 2a65cd80e263e5f4bb362ec9343c6eaf, type: 3}
+  SeedPF: {fileID: 8085539266509152182, guid: a8c498dc435dca9478eafef771b9ce1a, type: 3}
   TimeBetweenJumps: 0.13
   DistanceForMovementForcesFromCenter: 0.5
   DistanceAboveCenterMovementForcesFromCenter: 0.5
@@ -552,7 +552,8 @@ MonoBehaviour:
   MovementForce: 22
   GroundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
+  ZoomPower: 50
 --- !u!1 &1203875586
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,3 +947,56 @@ MonoBehaviour:
   ForceDirection: {x: 0, y: -1, z: 0}
   ForceAmount: 3
   RotationDegreesPerSecond: 60
+--- !u!1 &2030706813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2030706815}
+  - component: {fileID: 2030706814}
+  m_Layer: 0
+  m_Name: Random Plant Grower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2030706814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030706813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff63cd5f6a29e444eb2972c2756bf1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlantsToGrow:
+  - {fileID: 8085539266509152180, guid: a8c498dc435dca9478eafef771b9ce1a, type: 3}
+  - {fileID: 8085539266509152180, guid: 2a65cd80e263e5f4bb362ec9343c6eaf, type: 3}
+  - {fileID: 6363956622570754857, guid: c1639ff6f2813ce4cb6c6be11d91d77b, type: 3}
+  NumberOfPlantsToGrow: 70
+  RadiusToGrowIn: 80
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!4 &2030706815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030706813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 6437997207077388888}
   - component: {fileID: 569947117}
   m_Layer: 0
-  m_Name: Springwillow Cone
+  m_Name: S Curve Springwillow Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,30 +725,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: -0.75
-      inSlope: 0
-      outSlope: 0.37719083
-      tangentMode: 1
+      value: -1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.48771003
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.51683664
-      value: -0.37996504
-      inSlope: 0.51829225
-      outSlope: 0.6888955
-      tangentMode: 1
+      time: 1
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.17082743
-    - serializedVersion: 3
-      time: 1.0083313
-      value: -0.0034194961
-      inSlope: 0.091982804
-      outSlope: 2
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.34894297
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

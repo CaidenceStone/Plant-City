@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,7 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 LocalVelocity = Vector3.zero;
 
-    // Start is called before the first frame update
+    public float ZoomPower = 50f;
+
     void Start()
     {
         this.MyInputActionMap.FindActionMap("Platforming").Enable();
@@ -69,6 +72,11 @@ public class PlayerController : MonoBehaviour
         if (this.MyInputActionMap.FindActionMap("Platforming").FindAction("Plant Seed").WasPressedThisFrame())
         {
             this.PlantSeed();
+        }
+
+        if (this.MyInputActionMap.FindActionMap("Platforming").FindAction("Zoom").WasPressedThisFrame())
+        {
+            this.Zoom();
         }
     }
 
@@ -104,5 +112,18 @@ public class PlayerController : MonoBehaviour
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         rotation *= Quaternion.Euler(Vector3.up * Random.Range(0, 360f));
         Instantiate(SeedPF, hit.point, rotation);
+    }
+
+    void Zoom()
+    {
+        RaycastHit hit;
+        if (!Physics.Raycast(Camera.main.ScreenPointToRay(this.MyInputActionMap.FindActionMap("Platforming").FindAction("Mouse Position").ReadValue<Vector2>()), out hit, float.MaxValue, GroundMask))
+        {
+            Debug.Log("Can't plant seed, I don't see anything");
+            return;
+        }
+
+        Vector3 pointDiff = (hit.point - this.CharacterBody.position);
+        this.CharacterBody.AddForce(pointDiff.normalized * this.ZoomPower, ForceMode.Impulse);
     }
 }
