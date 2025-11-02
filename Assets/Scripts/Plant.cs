@@ -13,8 +13,8 @@ public class Plant : MonoBehaviour
     public float GrowYSpeed;
     public float GrowXZSpeed;
 
-    private float maxSizeRoll;
-    private bool isGrowing = true;
+    protected float maxSizeRoll;
+    public bool isGrowing { protected set; get; } = true;
 
     public Branch BranchPF;
     public float OddsOfGrowingBranch = .4f;
@@ -102,7 +102,7 @@ public class Plant : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!isGrowing)
         {

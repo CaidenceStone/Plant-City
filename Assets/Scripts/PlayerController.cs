@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -100,6 +101,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Debug.Log($"Planting seed at {hit.point} with normal {hit.normal}!");
-        Instantiate(SeedPF, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+        rotation *= Quaternion.Euler(Vector3.up * Random.Range(0, 360f));
+        Instantiate(SeedPF, hit.point, rotation);
     }
 }
