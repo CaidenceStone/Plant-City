@@ -8,6 +8,10 @@ public class SpringwillowCone : MonoBehaviour
     public GameObject Model;
 
     public float SpeedGrowthMultiplier = 1f;
+    /// <summary>
+    /// Percentage from tip to base away from the tip to put the next cone.
+    /// </summary>
+    public float BranchInwardness = .2f;
 
     public float CurrentScale { get; private set; } = 1f;
 
@@ -16,12 +20,6 @@ public class SpringwillowCone : MonoBehaviour
 
     public AnimationCurve XZOverTime;
     public AnimationCurve YOverTime;
-
-    /// <summary>
-    /// The percentage position point (index / number of target cones to grow) this is
-    /// </summary>
-    public float ConeGrownPercentage { get; set; }
-    public AnimationCurve OffsetPercentageCurve;
 
     public void TryGrow(float time)
     {
@@ -46,7 +44,7 @@ public class SpringwillowCone : MonoBehaviour
             YOverTime.Evaluate(scale / this.TargetMaxSize),
             XZOverTime.Evaluate(scale / this.TargetMaxSize))
             * scale;
-        this.NextSpringwillowConeParent.localPosition = (Vector3.up + Vector3.up * this.OffsetPercentageCurve.Evaluate(this.ConeGrownPercentage)) * scale;
+        this.NextSpringwillowConeParent.localPosition = Vector3.up * this.Model.transform.localScale.y * (1f - BranchInwardness);
     }
 
     public void SetNextRotation(float amount)

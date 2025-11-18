@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look Around"",
+                    ""type"": ""Value"",
+                    ""id"": ""7163c032-e611-4170-9055-78ec9bbc36d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef5522f6-a641-4b0d-8fd7-aac1d67ad1d2"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MyControlScheme"",
+                    ""action"": ""Look Around"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -212,6 +232,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Platforming_PlantSeed = m_Platforming.FindAction("Plant Seed", throwIfNotFound: true);
         m_Platforming_MousePosition = m_Platforming.FindAction("Mouse Position", throwIfNotFound: true);
         m_Platforming_Zoom = m_Platforming.FindAction("Zoom", throwIfNotFound: true);
+        m_Platforming_LookAround = m_Platforming.FindAction("Look Around", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -279,6 +300,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Platforming_PlantSeed;
     private readonly InputAction m_Platforming_MousePosition;
     private readonly InputAction m_Platforming_Zoom;
+    private readonly InputAction m_Platforming_LookAround;
     public struct PlatformingActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -289,6 +311,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @PlantSeed => m_Wrapper.m_Platforming_PlantSeed;
         public InputAction @MousePosition => m_Wrapper.m_Platforming_MousePosition;
         public InputAction @Zoom => m_Wrapper.m_Platforming_Zoom;
+        public InputAction @LookAround => m_Wrapper.m_Platforming_LookAround;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -316,6 +339,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @LookAround.started += instance.OnLookAround;
+            @LookAround.performed += instance.OnLookAround;
+            @LookAround.canceled += instance.OnLookAround;
         }
 
         private void UnregisterCallbacks(IPlatformingActions instance)
@@ -338,6 +364,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @LookAround.started -= instance.OnLookAround;
+            @LookAround.performed -= instance.OnLookAround;
+            @LookAround.canceled -= instance.OnLookAround;
         }
 
         public void RemoveCallbacks(IPlatformingActions instance)
@@ -372,5 +401,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnPlantSeed(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnLookAround(InputAction.CallbackContext context);
     }
 }

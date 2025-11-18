@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraFollowing : MonoBehaviour
 {
@@ -27,6 +29,10 @@ public class CameraFollowing : MonoBehaviour
 
     private Vector3 CurrentPlayerLookAtLocation;
 
+    public Vector3 LookAroundDistance = new Vector3(0, 20, -10);
+
+    public InputActionAsset MyInputActionMap;
+
     private Vector3 CameraFollowingTarget
     {
         get
@@ -49,9 +55,16 @@ public class CameraFollowing : MonoBehaviour
         this.CurrentPlayerLookAtLocation = Vector3.MoveTowards(this.CurrentPlayerLookAtLocation, this.Following.position, this.LookAtPlayerSpeedPerSecond * Time.deltaTime);
         this.CurrentPlayerLookAtLocation = Vector3.Lerp(this.CurrentPlayerLookAtLocation, this.Following.position, this.LookAtPlayerLerpPerFrame);
 
+        Vector3 adjustedCameraFollowingTarget = this.CameraFollowingTarget;
+
+        if (this.MyInputActionMap.FindActionMap("Platforming").FindAction("Look Around").ReadValue<float>() > 0)
+        {
+            adjustedCameraFollowingTarget += this.LookAroundDistance;
+        }
+
         // The camera tries to go towards an offset from this location, based on the CameraDistanceAnchor
-        Vector3 newPosition = Vector3.MoveTowards(this.transform.position, this.CameraFollowingTarget, this.AnchorFollowingSpeedPerSecond * Time.deltaTime);
-        newPosition = Vector3.Lerp(newPosition, this.CameraFollowingTarget, this.AnchorFollowingLerpPerFrame);
+        Vector3 newPosition = Vector3.MoveTowards(this.transform.position, adjustedCameraFollowingTarget, this.AnchorFollowingSpeedPerSecond * Time.deltaTime);
+        newPosition = Vector3.Lerp(newPosition, adjustedCameraFollowingTarget, this.AnchorFollowingLerpPerFrame);
 
         this.transform.position = newPosition;
         transform.LookAt(CurrentPlayerLookAtLocation);

@@ -6,6 +6,7 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class Springwillow : Plant
 {
+    public Transform FirstConeParent;
     public SpringwillowCone ConePF;
 
     private float CurNextConeTime = 0;
@@ -61,7 +62,7 @@ public class Springwillow : Plant
             return;
         }
 
-        this.CurNextConeTime = this.TimeBetweenCones;
+        this.CurNextConeTime += this.TimeBetweenCones;
 
         SpringwillowCone newCone;
 
@@ -77,12 +78,10 @@ public class Springwillow : Plant
         }
         else
         {
-            newCone = Instantiate<SpringwillowCone>(this.ConePF, this.transform, false);
+            newCone = Instantiate<SpringwillowCone>(this.ConePF, this.FirstConeParent, false);
             newCone.TargetMaxSize = maxSizeRoll;
             newCone.SpeedGrowthMultiplier = BaseSpeedGrowthMultiplier;
         }
-        // The first item will have a percentage of 0, the last item will have a percentage of (total - 1) / total.
-        newCone.ConeGrownPercentage = (float)this.cones.Count / (float)this.ConesToGrow;
 
         newCone.SetNextRotation(this.ConeRotationAmount);
         newCone.gameObject.SetActive(true);
