@@ -4,10 +4,10 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 
-public class Springwillow : Plant
+public class Springwillow_1 : Plant
 {
     public Transform FirstConeParent;
-    public SpringwillowCone ConePF;
+    public SpringwillowCone_1 ConePF;
 
     private float CurNextConeTime = 0;
     public float TimeBetweenCones = 1f;
@@ -21,7 +21,7 @@ public class Springwillow : Plant
     /// </summary>
     public float GrowthSpeedFalloffLerpValue = .8f;
 
-    private List<SpringwillowCone> cones = new List<SpringwillowCone>();
+    private List<SpringwillowCone_1> cones = new List<SpringwillowCone_1>();
 
     private int currentlyGrowingIndex { get; set; } = 0;
 
@@ -64,21 +64,21 @@ public class Springwillow : Plant
 
         this.CurNextConeTime += this.TimeBetweenCones;
 
-        SpringwillowCone newCone;
+        SpringwillowCone_1 newCone;
 
         // If there are any cones existing, take the most recently spawned one. This should place the new cone at its nose.
         // Otherwise, this must be the first cone.
         if (this.cones.Count > 0)
         {
-            SpringwillowCone previousCone = this.cones[this.cones.Count - 1];
-            newCone = Instantiate<SpringwillowCone>(this.ConePF, previousCone.NextSpringwillowConeParent, false);
+            SpringwillowCone_1 previousCone = this.cones[this.cones.Count - 1];
+            newCone = Instantiate<SpringwillowCone_1>(this.ConePF, previousCone.NextSpringwillowConeParent, false);
 
             newCone.TargetMaxSize = previousCone.TargetMaxSize * this.SizeFalloffLerpValue;
             newCone.SpeedGrowthMultiplier = previousCone.SpeedGrowthMultiplier * this.GrowthSpeedFalloffLerpValue;
         }
         else
         {
-            newCone = Instantiate<SpringwillowCone>(this.ConePF, this.FirstConeParent, false);
+            newCone = Instantiate<SpringwillowCone_1>(this.ConePF, this.FirstConeParent, false);
             newCone.TargetMaxSize = maxSizeRoll;
             newCone.SpeedGrowthMultiplier = BaseSpeedGrowthMultiplier;
         }
@@ -90,7 +90,7 @@ public class Springwillow : Plant
 
     private void HandleGrowCones()
     {
-        foreach (SpringwillowCone cone in this.cones)
+        foreach (SpringwillowCone_1 cone in this.cones)
         {
             if (!cone.IsGrowing)
             {

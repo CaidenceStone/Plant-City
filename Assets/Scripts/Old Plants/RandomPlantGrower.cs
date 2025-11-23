@@ -19,7 +19,7 @@ public class RandomPlantGrower : MonoBehaviour
             randomPosition *= this.RadiusToGrowIn;
 
             RaycastHit hit;
-            if (!Physics.Raycast(randomPosition + Vector3.up * 100f, Vector3.down, out hit, float.MaxValue, GroundMask))
+            if (!Physics.Raycast(randomPosition + Vector3.up * 100000f, Vector3.down, out hit, float.MaxValue, GroundMask))
             {
                 continue;
             }

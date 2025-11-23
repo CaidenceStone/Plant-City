@@ -26,6 +26,8 @@ public class SizeConfiguration
     /// </summary>
     public AnimationCurve SizeProbabilityDistributionCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
+    public int LikelihoodTickets = 1;
+
     public float RandomScale()
     {
         float rand = Random.Range(0, 1f);

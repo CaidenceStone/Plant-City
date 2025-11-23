@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+public class GreatSpringwillowCone : MonoBehaviour
 {
-    
+    public Transform NextSpringwillowParent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +16,5 @@ public class MainMenuController : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void LoadMainGameplay()
-    {
-        SceneManager.LoadSceneAsync("Main Gameplay Scene", LoadSceneMode.Single);
     }
 }

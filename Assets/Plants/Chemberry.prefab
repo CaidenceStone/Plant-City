@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5034035149188362071}
   - component: {fileID: 53069135897336262}
   - component: {fileID: 4011160939612772714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Leaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 6265636093764339456}
   - component: {fileID: 268789125206181508}
   - component: {fileID: 8210983642057623463}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Leaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1607982718118504029}
   - component: {fileID: 6162412608227392944}
   - component: {fileID: 3784282445742510527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Berry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 957359022608254271}
   - component: {fileID: 2909187486719503976}
   - component: {fileID: 6363956622570754857}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chemberry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GrowingTree: {fileID: 6819883031523337901}
-  GrowthSpeedModifier: 5
+  GrowthSpeedModifier: 500
   GrowYSpeed: 1
   GrowXZSpeed: 1
   BranchPF: {fileID: 0}
@@ -383,58 +383,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Sizes:
-  - SizeScaleMin: 1
-    SizeScaleMax: 1.5
-    SizeProbabilityDistributionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-  - SizeScaleMin: 2.5
-    SizeScaleMax: 3
-    SizeProbabilityDistributionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
   - SizeScaleMin: 10
     SizeScaleMax: 100
     SizeProbabilityDistributionCurve:
@@ -461,7 +409,116 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
+    LikelihoodTickets: 3
   - SizeScaleMin: 100
+    SizeScaleMax: 200
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 8
+  - SizeScaleMin: 200
+    SizeScaleMax: 300
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 21
+  - SizeScaleMin: 300
+    SizeScaleMax: 500
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 55
+  - SizeScaleMin: 500
+    SizeScaleMax: 800
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 55
+  - SizeScaleMin: 800
     SizeScaleMax: 1000
     SizeProbabilityDistributionCurve:
       serializedVersion: 2
@@ -487,6 +544,94 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
+    LikelihoodTickets: 21
+  - SizeScaleMin: 1000
+    SizeScaleMax: 2000
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 8
+  - SizeScaleMin: 2000
+    SizeScaleMax: 3000
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 3
+  - SizeScaleMin: 3000
+    SizeScaleMax: 5000
+    SizeProbabilityDistributionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    LikelihoodTickets: 2
+  PlantMask:
+    serializedVersion: 2
+    m_Bits: 128
+  PushRadiusAdditive: 1.5
+  PushRadiusScaleMultiplicative: 1.5
+  PushDistancePerSecond: 1
   Berries:
   - {fileID: 3784282445742510527}
   - {fileID: 769129998603842780}
@@ -505,7 +650,7 @@ GameObject:
   - component: {fileID: 1014590298166138077}
   - component: {fileID: 4470627447451584426}
   - component: {fileID: 769129998603842780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Berry (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6819883031523337901}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Growing Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +796,7 @@ GameObject:
   - component: {fileID: 8757029317179488829}
   - component: {fileID: 7448416614403144601}
   - component: {fileID: 5252538956031259818}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Berry (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +907,7 @@ GameObject:
   - component: {fileID: 3494544568783091954}
   - component: {fileID: 7315034625895064997}
   - component: {fileID: 356286643628126484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Berry (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +1017,7 @@ GameObject:
   - component: {fileID: 6320795814881113588}
   - component: {fileID: 8149307039771908928}
   - component: {fileID: 1097788117155731583}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Leaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}

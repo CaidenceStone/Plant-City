@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpringwillowCone : MonoBehaviour
+public class SpringwillowCone_1 : MonoBehaviour
 {
     public Transform NextSpringwillowConeParent;
     public GameObject Model;

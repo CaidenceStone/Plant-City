@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +24,26 @@ public class Plant : MonoBehaviour
 
     public List<SizeConfiguration> Sizes = new List<SizeConfiguration>();
     private SizeConfiguration chosenSizeTier = null;
+    private List<SizeConfiguration> sizeConfigurationIndexes = new List<SizeConfiguration>();
+
+    public LayerMask PlantMask;
+
+    /// <summary>
+    /// When determining how far this plant wants another plant to be, it uses its scale multiplied by <see cref="PushRadiusScaleMultiplicative"/> plus this.
+    /// </summary>
+    public float PushRadiusAdditive = 1f;
+    /// <summary>
+    /// When determining how far this plant wants another plant to be, it uses its scale multiplied by this plus <see cref="PushRadiusAdditive"/>.
+    /// </summary>
+    public float PushRadiusScaleMultiplicative = 1.2f;
+    public float PushDistancePerSecond = .2f;
+    public float PushRadiusTotal
+    {
+        get
+        {
+            return this.GrowingTree.localScale.x * this.PushRadiusScaleMultiplicative + this.PushDistancePerSecond;
+        }
+    }
 
     float LifecycleStage
     {
@@ -42,7 +63,14 @@ public class Plant : MonoBehaviour
         }
         else
         {
-            this.chosenSizeTier = this.Sizes[Random.Range(0, this.Sizes.Count)];
+            sizeConfigurationIndexes = new List<SizeConfiguration>();
+            foreach (SizeConfiguration config in this.Sizes)
+            {
+                sizeConfigurationIndexes.AddRange(Enumerable.Repeat<SizeConfiguration>(config, config.LikelihoodTickets));
+            }
+
+            this.chosenSizeTier = this.sizeConfigurationIndexes[Random.Range(0, this.sizeConfigurationIndexes.Count)];
+            this.sizeConfigurationIndexes.Clear();
         }
 
         this.maxSizeRoll = this.chosenSizeTier.RandomScale();
@@ -89,7 +117,7 @@ public class Plant : MonoBehaviour
 
             foreach (SizeConfiguration size in this.Sizes)
             {
-                largestSize = Mathf.Max(size.SizeScaleMin, largestSize);
+                largestSize = Mathf.Max(size.SizeScaleMax, largestSize);
             }
 
             return largestSize;
@@ -104,6 +132,9 @@ public class Plant : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+
+        this.PushyPushie();
+
         if (!isGrowing)
         {
             return;
@@ -134,5 +165,15 @@ public class Plant : MonoBehaviour
         Branch newBranch = Instantiate(BranchPF, transform.position + Vector3.up * GrowingTree.localScale.y * .2f, Quaternion.Euler(0, randomYRotation, 0), this.transform);
         newBranch.FromSeed = this;
         newBranch.gameObject.SetActive(true);
+    }
+
+    void PushyPushie()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, this.PushRadiusTotal, PlantMask, QueryTriggerInteraction.Collide);
+        foreach (Collider collider in hits)
+        {
+            Vector3 awayFromMe = (transform.position - collider.transform.position).normalized * this.PushDistancePerSecond * Time.deltaTime;
+            collider.transform.position += awayFromMe;
+        }
     }
 }
