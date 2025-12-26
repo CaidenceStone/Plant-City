@@ -12803,7 +12803,7 @@ MonoBehaviour:
   TimeBetweenJumps: 0.13
   DistanceForMovementForcesFromCenter: 0.5
   DistanceAboveCenterMovementForcesFromCenter: 0.5
-  JumpForce: 13
+  JumpForce: 50
   MovementForce: 22
   GroundMask:
     serializedVersion: 2

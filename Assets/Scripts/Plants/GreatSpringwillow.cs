@@ -28,6 +28,12 @@ public class GreatSpringwillow : GreatPlant
     private SizeConfiguration chosenSizeTier = null;
     private List<SizeConfiguration> sizeConfigurationIndexes = new List<SizeConfiguration>();
 
+    public GreatSpringwillowTip Tip;
+
+    public Color StartColor;
+    public Color EndColor;
+    public AnimationCurve ColorLerpProgressDistancePercent;
+
     private void Start()
     {
         if (this.Sizes?.Count == 0)
@@ -76,6 +82,14 @@ public class GreatSpringwillow : GreatPlant
 
             GreatSpringwillowCone newCone = Instantiate(ConePF, parent);
             cones.Add(newCone);
+            float percentage = ((float)ii / (float)(numberOfCones - 1));
+            newCone.SetColor(Color.Lerp(StartColor, EndColor, ColorLerpProgressDistancePercent.Evaluate(percentage)));
+
+            if (ii == cones.Count - 1)
+            {
+                this.Tip.transform.SetParent(cones[ii].transform);
+                this.Tip.transform.localPosition = Vector3.up;
+            }
         }
     }
 

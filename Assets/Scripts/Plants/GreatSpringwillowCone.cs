@@ -5,16 +5,10 @@ using UnityEngine;
 public class GreatSpringwillowCone : MonoBehaviour
 {
     public Transform NextSpringwillowParent;
+    public MeshRenderer Renderer;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetColor(Color toSet)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.Renderer.material.color = toSet;
     }
 }
